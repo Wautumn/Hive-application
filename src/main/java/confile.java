@@ -33,7 +33,7 @@ public class confile {
         System.out.println("登录成功");
 
         if(i==1) {
-            System.out.println("请选择您的服务：1.浏览书籍 2.查看订单 3.退出");
+            System.out.println("请选择您的服务：1.浏览书籍 2.查看订单 3.购买书籍 4.退出");
             int operation = sc.nextInt();
             if (operation == 1) {
                 //显示所有书籍数据
