@@ -8,7 +8,7 @@ public class confile {
     private static String driverName="org.apache.hadoop.hive.jdbc.HiverDriver";
     public static void main(String[] args) throws SQLException{
         Connection con= getConnection();
-        System.out.println("ok");
+        System.out.println("终于连接成功了！");
 
         Statement stmt=con.createStatement();
 
@@ -39,7 +39,7 @@ public class confile {
                 //显示所有书籍数据
                 ResultSet books=stmt.executeQuery(goods.getAllBoods());
                 while (books.next()){
-                    System.out.println(books.getArray(1));
+                    //System.out.println(books.getArray(1));
                 }
             }
             else if(operation==2){
@@ -57,7 +57,7 @@ public class confile {
 
 
         else if(i==2){
-            System.out.println("请选择您的服务：1.查看所有商品 2.添加商品 3.删除商品 4.修改商品库存 5.查看所有员工 6.退出");
+            System.out.println("请选择您的服务：1.查看所有商品 2.添加商品 3.删除商品 4.修改商品库存 5.退出");
             int operation=sc.nextInt();
             if(operation==1){
                 ResultSet resultSet=stmt.executeQuery(goods.getAllBoods());
@@ -76,9 +76,7 @@ public class confile {
             else if(operation==5){
 
             }
-            else if(operation==6){
 
-            }
 
         }
 

@@ -1,6 +1,6 @@
 package SQLOperation;
 /*
-商品相关：查看商品，删除商品，添加商品
+商品相关：查看商品，删除商品，添加商品,修改商品库存
  */
 public class GoodsRelated {
     String tablename="goods";
