@@ -63,14 +63,43 @@ public class confile {
                 ResultSet resultSet=stmt.executeQuery(goods.getAllBoods());
             }
             else if(operation==2){
-
+                System.out.println("请输入书籍名称");
+                String name=sc.next();
+                System.out.println("请输入书籍价格");
+                int price=sc.nextInt();
+                System.out.println("请输入书籍库存");
+                int count=sc.nextInt();
+                String sql=goods.addBooks(name,price,count);
+                System.out.println("运行"+sql);
+                stmt.execute(goods.addBooks(name,price,count));
+                System.out.println("添加成功");
             }
             else if(operation==3){
+                ResultSet resultSet=stmt.executeQuery(goods.getAllBoods());
+                while (resultSet.next()){
+
+                }
                 System.out.println("请输入商品编号");
                 int num=sc.nextInt();
                 stmt.executeQuery(goods.deleteBooks(num));
+                String sql=goods.deleteBooks(num);
+                System.out.println("运行"+sql);
+                stmt.execute(sql);
+                System.out.println("删除成功");
             }
             else if(operation==4){
+                ResultSet resultSet=stmt.executeQuery(goods.getAllBoods());
+                while (resultSet.next()){
+
+                }
+                System.out.println("请输入商品编号");
+                int num=sc.nextInt();
+                System.out.println("请输入现有库存");
+                int count=sc.nextInt();
+                String sql=goods.deleteBooks(num);
+                System.out.println("运行"+sql);
+                stmt.execute(goods.updateCount(num,count));
+                System.out.println("修改成功");
 
             }
             else if(operation==5){
