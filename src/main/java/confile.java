@@ -58,6 +58,17 @@ public class confile {
                 //查看订单
                // orderSearch.order(1);
                 ResultSet order=stmt.executeQuery(orderSearch.order(id));
+                while(order.next()){
+
+                    int orderid = order.getInt(1);
+                    //int userid = order.getInt(2);
+                    int bookid = order.getInt(3);
+                    String bookname = stmt.executeQuery(goods.getname(bookid)).toString();
+                    String bookprice = stmt.executeQuery(goods.getprice(bookid)).toString();
+                    int state = order.getInt(4);
+                    System.out.println(orderid+" "+bookname+" "+bookprice+" "+state +"\n");
+
+                }
 
             }
             else{

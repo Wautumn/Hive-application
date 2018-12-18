@@ -4,6 +4,23 @@ package SQLOperation;
  */
 public class GoodsRelated {
     String tablename="goods";
+
+    /*
+    找书名
+     */
+    public String getname(int bookid){
+        String sql="select name from "+tablename +" where id "+" = "+bookid;
+        return sql;
+    }
+
+    /*
+    找价格
+     */
+    public String getprice(int bookid){
+        String sql="select price from "+tablename +" where id "+" = "+bookid;
+        return sql;
+    }
+
     /*
     所有书
      */
