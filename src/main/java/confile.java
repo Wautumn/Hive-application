@@ -1,5 +1,6 @@
 import SQLOperation.OrderSearch;
 import SQLOperation.GoodsRelated;
+import SQLOperation.UserRelated;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -15,6 +16,7 @@ public class confile {
 
         GoodsRelated goods=new GoodsRelated();
         OrderSearch orderSearch=new OrderSearch();
+        UserRelated user = new UserRelated();
 
         Scanner sc=new Scanner(System.in);
 
@@ -30,7 +32,17 @@ public class confile {
         String password=sc.next();
 
         //判断是否登录成功
-        System.out.println("登录成功");
+        ResultSet pass = stmt.executeQuery(user.login(username));
+        if(password.equals(pass)){
+            System.out.println("登录成功");
+        }
+        else{
+            System.out.println("登录失败");
+        }
+
+        //该用户ID
+        String account = stmt.executeQuery(user.findid(username)).toString();
+        int id = Integer.parseInt(account);
 
         if(i==1) {
             System.out.println("请选择您的服务：1.浏览书籍 2.查看订单 3.退出");
@@ -45,7 +57,7 @@ public class confile {
             else if(operation==2){
                 //查看订单
                // orderSearch.order(1);
-                ResultSet order=stmt.executeQuery(orderSearch.order(1));
+                ResultSet order=stmt.executeQuery(orderSearch.order(id));
 
             }
             else{
