@@ -55,9 +55,17 @@ public class GoodsRelated {
     /*
     添加书
      */
-    public String addBooks(){
+    public String addBooks(String name,int price, int count){
         String sql="insert int "+tablename+" values(?,?,?)";
-        //
+        return sql;
+    }
+
+    /*
+    修改库存
+     */
+    public String updateCount(int id,int count){
+        String sql="";
+        sql="update "+tablename+" set count = "+count+ " where id= "+id;
         return sql;
     }
 
