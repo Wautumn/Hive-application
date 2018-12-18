@@ -1,5 +1,5 @@
 import SQLOperation.OrderSearch;
-import SQLOperation.viewGoods;
+import SQLOperation.GoodsRelated;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -7,17 +7,13 @@ import java.util.Scanner;
 public class confile {
     private static String driverName="org.apache.hadoop.hive.jdbc.HiverDriver";
     public static void main(String[] args) throws SQLException{
-       try{
-            Class.forName(driverName);
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        Connection con= DriverManager.getConnection("jdbc:hive://localhost:10002/default","","");
+        Connection con= getConnection();
+        System.out.println("ok");
+
         Statement stmt=con.createStatement();
 
-        System.out.println("连接成功！");
 
-        viewGoods goods=new viewGoods();
+        GoodsRelated goods=new GoodsRelated();
         OrderSearch orderSearch=new OrderSearch();
 
         Scanner sc=new Scanner(System.in);
@@ -64,13 +60,15 @@ public class confile {
             System.out.println("请选择您的服务：1.查看所有商品 2.添加商品 3.删除商品 4.修改商品库存 5.查看所有员工 6.退出");
             int operation=sc.nextInt();
             if(operation==1){
-
+                ResultSet resultSet=stmt.executeQuery(goods.getAllBoods());
             }
             else if(operation==2){
 
             }
             else if(operation==3){
-
+                System.out.println("请输入商品编号");
+                int num=sc.nextInt();
+                stmt.executeQuery(goods.deleteBooks(num));
             }
             else if(operation==4){
 
@@ -89,6 +87,20 @@ public class confile {
 
 
 
+    }
+
+    private static Connection getConnection(){
+        Connection con=null;
+        try {
+            Class.forName("org.apache.hive.jdbc.HiveDriver");// 加载hive2数据驱动
+
+            con = DriverManager.getConnection(
+                    "jdbc:hive2://192.168.174.131:10000/default", "root", null);// 创建数据连接
+
+        } catch (Exception e) {
+            System.out.println("hive数据库连接失败" + e.getMessage());
+        }
+        return con;
     }
 
 }
